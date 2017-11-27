@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 @click.command()
 @click.argument("input_file", type=click.Path(exists=True))
-@click.argument("output_file", type=click.File("wb"))
+@click.argument("output_file", type=click.Path())
 def main(input_file, output_file):
     # read big endian
     chunk_size = 100000
@@ -15,7 +15,7 @@ def main(input_file, output_file):
         input_file,
         mode="r",
         dtype=np.dtype(">f4"),
-        shape=(chunk_size * 10000,),
+        shape=(chunk_size * 1000,),
     )
     print("reading: {}".format(humanize.naturalsize(a.size)))
     n_chunks = a.size // chunk_size
@@ -27,8 +27,9 @@ def main(input_file, output_file):
         )
         d = dict(zip(sizes, counts))
         counter.update(d)
-    output_array = np.array(list(counter.items()), dtype=np.float16)
-    np.save(output_file, output_array)
+    output_array = np.array(list(counter.items()))
+    print("saving results...")
+    np.savetxt(output_file, output_array, header="size,counts")
 
 
 
