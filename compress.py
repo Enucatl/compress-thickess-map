@@ -15,9 +15,9 @@ def main(input_file, output_file):
         input_file,
         mode="r",
         dtype=np.dtype(">f4"),
-        shape=(chunk_size * 1000,),
+        # shape=(chunk_size * 1000,),
     )
-    print("reading: {}".format(humanize.naturalsize(a.size)))
+    print("reading: {}".format(humanize.naturalsize(a.size * a.dtype.itemsize)))
     n_chunks = a.size // chunk_size
     counter = collections.Counter()
     for i in tqdm(range(n_chunks)):
@@ -29,7 +29,7 @@ def main(input_file, output_file):
         counter.update(d)
     output_array = np.array(list(counter.items()))
     print("saving results...")
-    np.savetxt(output_file, output_array, header="size,counts")
+    np.savetxt(output_file, output_array, header="size,counts", delimiter=",")
 
 
 
