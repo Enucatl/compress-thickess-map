@@ -1,3 +1,5 @@
+*.csv.gz
+*.rds
 *.npy
 *.csv
 # Byte-compiled / optimized / DLL files
