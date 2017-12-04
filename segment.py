@@ -6,11 +6,14 @@ from tqdm import tqdm
 
 @click.command()
 @click.argument("input_folder",
-                type=click.Path(exists=True),
-               file_okay=False)
+                type=click.Path(
+                    exists=True,
+                    file_okay=False)
+               )
 @click.argument("output_folder",
-                type=click.Path(exists=True),
-                file_okay=False
+                type=click.Path(
+                    exists=True,
+                    file_okay=False)
                )
 def main(input_folder, output_folder):
     """segment all the files in the folder"""
