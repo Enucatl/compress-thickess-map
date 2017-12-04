@@ -1,6 +1,17 @@
 # compress-thickess-map
-make thickness map files smaller
+check the Rakefile
 
+## python requirements
 ```
-python compress.py /sls/X02DA/data/e13657/Data10/matteo-stitching/wt353_LL_smoke_stitched_LocThk.raw{,_sizes_counts.csv.gz}
+pip install -r requirements.txt
+```
+
+## R requirements
+```
+install.packages(c("ggplot", "ks", "data.table", "argparse"))
+```
+
+## available targets
+```
+rake -T
 ```

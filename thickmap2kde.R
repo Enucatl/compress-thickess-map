@@ -15,5 +15,23 @@ parser$add_argument('--xmin', nargs='?', default=0, help='kde xmin')
 parser$add_argument('--xmax', nargs='?', default=150, help='kde xmax')
 
 args <- parser$parse_args()
-datasets = fread(paste("zcat", args$source))
-print(datasets)
+dt = fread(paste("zcat", args$source))
+
+#remove first row
+dt = dt[-1]
+
+#convert pixels to um
+dt[, size := size * args$pixel_size]
+
+print(dt)
+
+thickness_map = kde(
+    dt[, size],
+    h=args$density_bw,
+    gridsize=args$gridsize,
+    xmin=args$xmin,
+    xmax=args$xmax,
+    binned=TRUE,
+    bgridsize=args$bgridsize,
+    w=dt[, counts])
+saveRDS(thickness_map, args$output)
