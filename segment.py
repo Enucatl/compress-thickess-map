@@ -25,9 +25,11 @@ def main(input_folder, output_folder):
         input_filenames[0],
         output_filename
     )
+    print(segmentation_command)
     subprocess.check_call(segmentation_command, shell=True)
     output_filenames = glob.glob(
         os.path.join(output_folder, "*.tif"))
+    print("compressing...")
     for f in tqdm(output_filenames):
         compressed_filename = f.replace(
             ".tif",
