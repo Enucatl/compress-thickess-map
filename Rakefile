@@ -6,6 +6,17 @@ segmentation_datasets = CSV.table "segmentation_datasets.csv"
 
 namespace :segmentation do
 
+  segmentation_datasets.each do |dataset|
+
+    desc "segment #{dataset[:reconstruction]}"
+    file dataset[:segmentation] => ["segment.py", dataset[:segmentation]] do |f|
+      sh "python #{f.prerequisites[0]} #{f.prerequisites[1]} #{f.name}"
+    end
+  end
+
+  desc "segment all"
+  task :all => datasets[:segmentation]
+
 end
 
 namespace :test do
