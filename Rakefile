@@ -2,6 +2,11 @@ require "csv"
 require "rake/clean"
 
 datasets = CSV.table "datasets.csv"
+segmentation_datasets = CSV.table "segmentation_datasets.csv"
+
+namespace :segmentation do
+
+end
 
 namespace :test do
   # test with a small file
