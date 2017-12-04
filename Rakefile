@@ -10,6 +10,7 @@ namespace :segmentation do
 
     desc "segment #{dataset[:reconstruction]}"
     file dataset[:segmentation] => ["segment.py", dataset[:segmentation]] do |f|
+      mkdir_p dataset[:segmentation]
       sh "python #{f.prerequisites[0]} #{f.prerequisites[1]} #{f.name}"
     end
   end
