@@ -8,7 +8,7 @@ from ij import IJ
 print("opening %s" %input_file)
 IJ.run("Image Sequence...", "open=%s sort" %input_file)
 print("threshold with triangle method")
-IJ.run("Make Binary", "method=Triangle background=Dark calculate")
+IJ.run("Make Binary", "method=Otsu background=Dark calculate")
 print("erode")
 IJ.run("Erode", "stack")
 print("dilate")

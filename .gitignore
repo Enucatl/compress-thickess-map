@@ -1,4 +1,5 @@
 *.csv.gz
+*.swp
 *.rds
 *.npy
 *.csv

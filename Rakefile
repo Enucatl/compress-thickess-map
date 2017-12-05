@@ -9,9 +9,9 @@ namespace :segmentation do
   segmentation_datasets.each do |dataset|
 
     desc "segment #{dataset[:reconstruction]}"
-    file dataset[:segmentation] => ["segment.py", dataset[:reconstruction]] do |f|
+    file dataset[:segmentation] => ["segment.py", "segment_macro.py", dataset[:reconstruction]] do |f|
       mkdir_p dataset[:segmentation]
-      sh "python #{f.prerequisites[0]} #{f.prerequisites[1]} #{f.name}"
+      sh "python #{f.prerequisites[0]} #{f.prerequisites[2]} #{f.name}"
     end
   end
 
