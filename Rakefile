@@ -17,7 +17,7 @@ namespace :segmentation do
   end
 
   desc "segment all"
-  task :all => segmentation_datasets[:segmentation]
+  multitask :all => segmentation_datasets[:segmentation]
 
 end
 
