@@ -3,7 +3,7 @@ import os
 import click
 import glob
 import subprocess
-from tqdm import tqdm
+from PIL import Image
 
 @click.command()
 @click.argument("input_folder",
@@ -21,10 +21,8 @@ def main(input_folder, output_folder):
     input_filenames = sorted(glob.glob(os.path.join(input_folder, "*.tif")))
     d = len(input_filenames)
     first_filename = input_filenames[0]
-    command = "identify {0}".format(first_filename)
-    print(command)
-    output = subprocess.check_output(command, shell=True)
-    w, h = output.split()[2].decode().split("x")
+    first_image = Image.open(first_filename)
+    w, h = first_image.size
     dims_output_filename = os.path.join(
         output_folder,
         "dims.txt")
@@ -39,7 +37,7 @@ def main(input_folder, output_folder):
         output_filename
     )
     print(command)
-    subprocess.check_call(segmentation_command, shell=True)
+    subprocess.check_call(command, shell=True)
 
 
 if __name__ == "__main__":

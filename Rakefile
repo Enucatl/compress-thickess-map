@@ -27,6 +27,7 @@ namespace :test do
 
     desc "calculate distance ridge of #{dataset[:stitched]} with fiji"
     file dataset[:distance_ridge] => ["distance_ridge.py", "distance_ridge_macro.py", dataset[:stitched]] do |f|
+      p "python #{f.prerequisites[0]} #{f.prerequisites[2]} #{f.name}"
       mkdir_p dataset[:distance_ridge]
       sh "python #{f.prerequisites[0]} #{f.prerequisites[2]} #{f.name}"
     end
