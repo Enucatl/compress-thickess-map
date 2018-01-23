@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 import click
 import glob
@@ -18,27 +19,27 @@ from tqdm import tqdm
 def main(input_folder, output_folder):
     """segment all the files in the folder"""
     input_filenames = sorted(glob.glob(os.path.join(input_folder, "*.tif")))
+    d = len(input_filenames)
+    first_filename = input_filenames[0]
+    command = "identify {0}".format(first_filename)
+    print(command)
+    output = subprocess.check_output(command, shell=True)
+    w, h = output.split()[2].decode().split("x")
+    dims_output_filename = os.path.join(
+        output_folder,
+        "dims.txt")
+    print(w, h, d, dims_output_filename)
+    with open(dims_output_filename, "w") as dims_output:
+        print(w, h, d, file=dims_output)
     output_filename = os.path.join(
         output_folder,
-        os.path.basename(input_filenames[0]))
-    segmentation_command = "/sls/X02DA/data/e13657/Data20/quant-paper/Fiji.app/ImageJ-linux64 --ij2 --headless --run segment_macro.py 'input_file=\"{}\",output_file=\"{}\"'".format(
+        "dr.raw")
+    command = "fiji --ij2 --headless --run distance_ridge_macro.py 'input_file=\"{}\",output_file=\"{}\"'".format(
         input_filenames[0],
         output_filename
     )
-    print(segmentation_command)
+    print(command)
     subprocess.check_call(segmentation_command, shell=True)
-    output_filenames = glob.glob(
-        os.path.join(output_folder, "*.tif"))
-    print("compressing...")
-    for f in tqdm(output_filenames):
-        compressed_filename = f.replace(
-            ".tif",
-            "_compressed.tif")
-        command = "tiffcp -c packbits {} {}".format(
-            f,
-            compressed_filename)
-        subprocess.check_call(command, shell=True)
-        os.remove(f)
 
 
 if __name__ == "__main__":
