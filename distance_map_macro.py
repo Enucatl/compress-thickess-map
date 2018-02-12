@@ -10,5 +10,5 @@ IJ.run("Geometry to Distance Map", "threshold=128")
 # print "distance map to distance ridge" 
 # IJ.run("Distance Map to Distance Ridge")
 print "save to", output_file 
-IJ.saveAs("Raw Data", output_file)
+IJ.saveAs("Raw Data", "%s" %output_file)
 IJ.run("Quit")

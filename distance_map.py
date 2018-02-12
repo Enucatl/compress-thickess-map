@@ -20,11 +20,12 @@ def main(input_folder, output_filename):
     first_filename = input_filenames[0]
     first_image = Image.open(first_filename)
     w, h = first_image.size
+    print(output_filename)
     dims_output_filename = output_filename.replace(".raw", ".txt")
     print(w, h, d, dims_output_filename)
     with open(dims_output_filename, "w") as dims_output:
         print(w, h, d, file=dims_output)
-    command = "~/Data20/quant-paper/Fiji.app/ImageJ-linux64 --ij2 --headless --run distance_map_macro.py 'input_file=\"{}\",output_file=\"{}\"'".format(
+    command = "fiji --system --ij2 --headless --run distance_map_macro.py 'input_file=\"{}\",output_file=\"{}\"'".format(
         input_filenames[0],
         output_filename
     )

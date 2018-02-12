@@ -20,6 +20,7 @@ def main(input_folder, output_filename):
     first_filename = input_filenames[0]
     first_image = Image.open(first_filename)
     w, h = first_image.size
+    print(output_filename)
     dims_output_filename = output_filename.replace(".raw", ".txt")
     print(w, h, d, dims_output_filename)
     with open(dims_output_filename, "w") as dims_output:
