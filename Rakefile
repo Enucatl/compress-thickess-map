@@ -21,13 +21,21 @@ namespace :segmentation do
 
 end
 
-namespace :test do
+namespace :fiji do
   # test with a small file
   datasets.each do |dataset|
 
     desc "calculate distance ridge of #{dataset[:stitched]} with fiji"
-    file dataset[:distance_ridge] => ["distance_ridge.py", "distance_ridge_macro.py", dataset[:stitched]] do |f|
-      mkdir_p dataset[:distance_ridge]
+    file dataset[:distance_map] => ["distance_map.py", "distance_map_macro.py", dataset[:stitched]] do |f|
+      p "python #{f.prerequisites[0]} #{f.prerequisites[2]} #{f.name}"
+      mkdir_p File.dirname(dataset[:distance_ridge])
+      sh "python #{f.prerequisites[0]} #{f.prerequisites[2]} #{f.name}"
+    end
+
+    desc "calculate distance ridge of #{dataset[:distance_map]} with fiji"
+    file dataset[:distance_ridge] => ["distance_ridge.py", "distance_ridge_macro.py", dataset[:distance_map]] do |f|
+      p "python #{f.prerequisites[0]} #{f.prerequisites[2]} #{f.name}"
+      mkdir_p File.dirname(dataset[:distance_ridge])
       sh "python #{f.prerequisites[0]} #{f.prerequisites[2]} #{f.name}"
     end
 
@@ -48,4 +56,11 @@ namespace :test do
     end
 
   end
+
+  desc "distance ridges"
+  task :ridge => datasets[:distance_ridge]
+
+  desc "distance map"
+  task :map => datasets[:distance_map]
+
 end

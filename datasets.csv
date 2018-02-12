@@ -1,9 +1,9 @@
-name,stitched,distance_ridge,local_thickness,local_thickness_kde,local_thickness_plot
-KO202,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/KO202_LL_control_stitched_noncropped,/das/work/p13/p13657/distance_ridges/KO202,
-KO203,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/KO203_LL_control_stitched_noncropped,/das/work/p13/p13657/distance_ridges/KO203,
-KO373,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/ko373_LL_smoke_stitched_noncropped,/das/work/p13/p13657/distance_ridges/KO373,
-WT223,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/WT223_LL_control_stitched_noncropped,/das/work/p13/p13657/distance_ridges/WT223,
-WT224,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/WT224_LL_control_stitched_noncropped,/das/work/p13/p13657/distance_ridges/WT224,
-WT256,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/WT256_LL_smoke_stitched_noncropped,/das/work/p13/p13657/distance_ridges/WT256,
-WT353,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/WT353_LL_smoke_stitched_noncropped,/das/work/p13/p13657/distance_ridges/WT353,
-WT355,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/WT355_LL_smoke_stitched_noncropped,/das/work/p13/p13657/distance_ridges/WT355,
+name,stitched,distance_map,distance_ridge,local_thickness,local_thickness_kde,local_thickness_plot
+KO202,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/KO202_LL_control_stitched_noncropped,/das/work/p13/p13657/distance_ridges/KO202/dm.raw,/das/work/p13/p13657/distance_ridges/KO202/dr.raw, 
+KO203,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/KO203_LL_control_stitched_noncropped,/das/work/p13/p13657/distance_ridges/KO203/dm.raw,/das/work/p13/p13657/distance_ridges/KO203/dr.raw, 
+KO373,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/ko373_LL_smoke_stitched_noncropped,  /das/work/p13/p13657/distance_ridges/KO373/dm.raw,/das/work/p13/p13657/distance_ridges/KO373/dr.raw, 
+WT223,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/WT223_LL_control_stitched_noncropped,/das/work/p13/p13657/distance_ridges/WT223/dm.raw,/das/work/p13/p13657/distance_ridges/WT223/dr.raw, 
+WT224,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/WT224_LL_control_stitched_noncropped,/das/work/p13/p13657/distance_ridges/WT224/dm.raw,/das/work/p13/p13657/distance_ridges/WT224/dr.raw, 
+WT256,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/WT256_LL_smoke_stitched_noncropped,  /das/work/p13/p13657/distance_ridges/WT256/dm.raw,/das/work/p13/p13657/distance_ridges/WT256/dr.raw, 
+WT353,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/WT353_LL_smoke_stitched_noncropped,  /das/work/p13/p13657/distance_ridges/WT353/dm.raw,/das/work/p13/p13657/distance_ridges/WT353/dr.raw, 
+WT355,/sls/X02DA/Data10/e13657/matteo_high_resolution/stitched_datasets/WT355_LL_smoke_stitched_noncropped,  /das/work/p13/p13657/distance_ridges/WT355/dm.raw,/das/work/p13/p13657/distance_ridges/WT355/dr.raw, 
