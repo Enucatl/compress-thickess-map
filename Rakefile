@@ -59,11 +59,6 @@ namespace :compression do
       sh "srun python #{f.prerequisites[0]} #{f.prerequisites[1]} #{f.name}"
     end
 
-    #desc "calculate kde of #{dataset[:name]}"
-    #file dataset[:local_thickness_kde] => ["thickmap2kde.R", dataset[:local_thickness_compressed]] do |f|
-      #sh "./#{f.prerequisites[0]} #{f.prerequisites[1]} #{f.name}"
-    #end
-
     #desc "plot local thickness of #{dataset[:name]}"
     #file dataset[:local_thickness_plot] => ["plot_single.R", dataset[:local_thickness_kde]] do |f|
       #sh "./#{f.prerequisites[0]} --title #{dataset[:name]} #{f.prerequisites[1]} #{f.name}"
@@ -73,5 +68,21 @@ namespace :compression do
     task :all => datasets[:thickness_map_compressed]
 
   end
+
+end
+
+namespace :kde do
+
+  datasets.each do |dataset|
+
+    desc "calculate kde of #{dataset[:name]}"
+    file dataset[:kde] => ["thickmap2kde.R", dataset[:thickness_map_compressed_local]] do |f|
+      sh "./#{f.prerequisites[0]} #{f.prerequisites[1]} #{f.name} --xmax 100"
+    end
+
+  end
+
+  desc "kde"
+  task :all => datasets[:kde]
 
 end
