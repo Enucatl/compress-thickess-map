@@ -39,22 +39,6 @@ namespace :fiji do
       sh "python #{f.prerequisites[0]} #{f.prerequisites[2]} #{f.name}"
     end
 
-    desc "compress local thickness of #{dataset[:name]}"
-    file dataset[:local_thickness_compressed] => ["compress.py", dataset[:local_thickness_volume]] do |f|
-      #sh "python #{f.prerequisites[0]} --chunks 25 #{f.prerequisites[1]} #{f.name}"
-      sh "python #{f.prerequisites[0]} #{f.prerequisites[1]} #{f.name}"
-    end
-
-    desc "calculate kde of #{dataset[:name]}"
-    file dataset[:local_thickness_kde] => ["thickmap2kde.R", dataset[:local_thickness_compressed]] do |f|
-      sh "./#{f.prerequisites[0]} #{f.prerequisites[1]} #{f.name}"
-    end
-
-    desc "plot local thickness of #{dataset[:name]}"
-    file dataset[:local_thickness_plot] => ["plot_single.R", dataset[:local_thickness_kde]] do |f|
-      sh "./#{f.prerequisites[0]} --title #{dataset[:name]} #{f.prerequisites[1]} #{f.name}"
-    end
-
   end
 
   desc "distance ridges"
@@ -62,5 +46,32 @@ namespace :fiji do
 
   desc "distance map"
   task :map => datasets[:distance_map]
+
+end
+
+namespace :compression do
+
+  datasets.each do |dataset|
+
+    desc "compress local thickness of #{dataset[:name]}"
+    file dataset[:thickness_map_compressed] => ["compress.py", dataset[:thickness_map]] do |f|
+      #sh "python #{f.prerequisites[0]} --chunks 25 #{f.prerequisites[1]} #{f.name}"
+      sh "srun python #{f.prerequisites[0]} #{f.prerequisites[1]} #{f.name}"
+    end
+
+    #desc "calculate kde of #{dataset[:name]}"
+    #file dataset[:local_thickness_kde] => ["thickmap2kde.R", dataset[:local_thickness_compressed]] do |f|
+      #sh "./#{f.prerequisites[0]} #{f.prerequisites[1]} #{f.name}"
+    #end
+
+    #desc "plot local thickness of #{dataset[:name]}"
+    #file dataset[:local_thickness_plot] => ["plot_single.R", dataset[:local_thickness_kde]] do |f|
+      #sh "./#{f.prerequisites[0]} --title #{dataset[:name]} #{f.prerequisites[1]} #{f.name}"
+    #end
+
+    desc "compression"
+    task :all => datasets[:thickness_map_compressed]
+
+  end
 
 end

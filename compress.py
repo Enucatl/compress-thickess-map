@@ -45,6 +45,5 @@ def main(input_file, output_file, chunks):
         comments="")
 
 
-
 if __name__ == "__main__":
     main()
